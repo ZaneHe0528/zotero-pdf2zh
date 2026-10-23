@@ -166,7 +166,7 @@ def _write_pty_chunk(data, leftover, task_id):
     return leftover
 
 
-def execute_with_progress(cmd, task_id, args, env_manager):
+def execute_with_progress(cmd, task_id, args, env_manager, skip_figure_text=False):
     """Execute translation command and update task progress in real time."""
     final_cmd = cmd
     final_env = os.environ.copy()
@@ -193,6 +193,9 @@ def execute_with_progress(cmd, task_id, args, env_manager):
     # flags. Validate the exact runtime that will be executed, then add those
     # flags before any translation/API request begins.
     final_cmd = prepare_deepseek_runtime_command(final_cmd, final_env)
+    if skip_figure_text:
+        from utils.figure_text import figure_text_command
+        final_cmd = figure_text_command(final_cmd)
 
     print(f"[execute_with_progress] {' '.join(final_cmd)}\n")
 

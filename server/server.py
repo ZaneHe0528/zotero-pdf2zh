@@ -1064,6 +1064,8 @@ class PDFTranslator:
         return output_files
 
     def translate_pdf_next(self, input_path, config, task_id=None):
+        if config.skip_figure_text and args.enable_winexe and os.path.exists(args.winexe_path):
+            raise ValueError("跳过图片内文字翻译需要 Python 版 pdf2zh_next，不支持独立 exe。")
         if config.service in pdf2zh_next_service_aliases:
             config.service = pdf2zh_next_service_aliases[config.service]
         config.update_config_file(config_path[pdf2zh_next])
@@ -1213,9 +1215,9 @@ class PDFTranslator:
         elif args.enable_venv:
             # 使用 execute_with_progress 替代原来的 execute_in_env
             # 实时解析子进程输出中的进度信息并更新 task_manager
-            execute_with_progress(cmd, task_id, args, self.env_manager)
+            execute_with_progress(cmd, task_id, args, self.env_manager, skip_figure_text=config.skip_figure_text)
         else:
-            execute_with_progress(cmd, task_id, args, None)
+            execute_with_progress(cmd, task_id, args, None, skip_figure_text=config.skip_figure_text)
         existing = [p for p in output_path if os.path.exists(p)]
 
         for f in existing:

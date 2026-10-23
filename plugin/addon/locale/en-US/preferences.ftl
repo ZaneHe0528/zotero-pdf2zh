@@ -42,6 +42,7 @@ pref-skipClean       = Skip clean(maybe improve compatibility)
 pref-disableRichTextTranslate = Disable rich text translation(maybe improve compatibility)
 pref-enhanceCompatibility = Enhance compatibility (enables skip clean / disable rich text and may force translation first)
 pref-translateTableText = Translate table text(experimental)
+pref-skipFigureText = Skip text inside figures (experimental; keeps captions; depends on layout detection; requires updated Server, no standalone exe)
 pref-onlyIncludeTranslatedPage = Keep Only Actually Translated Pages (effective with page selection/skipping)
 
 pref-gen = Default Generated File

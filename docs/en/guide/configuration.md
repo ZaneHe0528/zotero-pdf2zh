@@ -136,6 +136,16 @@ See [Translation Options](/en/guide/translation-options).
 
 Useful only when a page range is active, for example together with **Skip Last Pages**.
 
+### Skip text inside figures (experimental)
+
+Enable **Skip text inside figures** under **pdf2zh 2.x configuration**. It is off by default to preserve existing behavior.
+
+- Keeps original characters inside detected `figure`, `image`, `figure_text`, and `figure_text_hybrid` regions; body text still translates.
+- Figure captions and titles still translate. Table text remains controlled by **Translate table text**.
+- Depends on layout detection: missed or misclassified figures cannot be guaranteed protection. This is neither an OCR toggle nor the drawing-line protection threshold.
+- Update both the plugin and Server. Requires Python `pdf2zh_next` (uv / conda / system Python); standalone Windows executables are rejected explicitly when enabled.
+- The Server adapts BabelDOC character grouping only inside the translation subprocess, without editing installed packages. Changes to engine internals may require updating this adapter.
+
 ### OCR Workaround
 
 This primarily improves compatibility with scanned/special PDFs that already contain a text layer; it is not a complete OCR engine.

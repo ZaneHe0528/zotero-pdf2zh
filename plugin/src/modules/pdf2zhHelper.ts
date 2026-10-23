@@ -1063,6 +1063,7 @@ export class PDF2zhHelperFactory {
             enhanceCompatibility:
                 getPref("enhanceCompatibility")?.toString() || "",
             translateTableText: getPref("translateTableText")?.toString() || "",
+            skipFigureText: getPref("skipFigureText")?.toString() || "",
             onlyIncludeTranslatedPage:
                 getPref("onlyIncludeTranslatedPage")?.toString() || "",
         };
